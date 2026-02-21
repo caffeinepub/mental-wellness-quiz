@@ -1,0 +1,93 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add user sign-up and authentication with Internet Identity",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "summary": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "acceptanceCriteria": [
+        "Users can click a sign-up/login button to authenticate with Internet Identity",
+        "Authentication state is persisted across browser sessions",
+        "The UI displays the user's authenticated status (logged in vs anonymous)",
+        "Users can log out from their account"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add authentication UI controls to the header displaying login/logout button based on authentication state from useInternetIdentity hook, showing user principal when authenticated"
+        },
+        {
+          "path": "frontend/src/components/AuthButton.tsx",
+          "operation": "create",
+          "description": "Create reusable authentication button component that conditionally renders login or logout button with loading states, using useInternetIdentity hook for authentication actions"
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
+      "acceptanceCriteria": [
+        "Authenticated users can navigate to a profile/history page",
+        "The page displays a list of previous quiz attempts with dates and scores",
+        "Users can see their progress trends over time",
+        "The page maintains the warm, supportive design theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProfilePage.tsx",
+          "operation": "create",
+          "description": "Create profile page component that fetches user's quiz history using getMyAttempts backend function, displays attempts with timestamps and scores in a supportive card layout with warm theme styling, shows empty state for users with no history"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add useMyAttempts React Query hook that fetches authenticated user's quiz history by calling getMyAttempts backend function, with proper cache management and authentication state dependency"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register new /profile route in TanStack Router configuration that renders ProfilePage component with authentication guard to ensure only logged-in users can access"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add navigation link to profile page in header that is only visible when user is authenticated, positioned alongside existing navigation elements"
+        },
+        {
+          "path": "frontend/src/components/AttemptCard.tsx",
+          "operation": "create",
+          "description": "Create reusable card component for displaying individual quiz attempt with formatted timestamp, score percentage, supportive feedback based on score level, maintaining warm wellness theme"
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
+      "acceptanceCriteria": [
+        "When authenticated, quiz submissions are sent through the authenticated actor",
+        "Results are stored with the user's Principal in the backend",
+        "Anonymous users continue to use localStorage for temporary results",
+        "The results page reflects whether results are saved to an account or are temporary"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/QuizPage.tsx",
+          "operation": "modify",
+          "description": "Update quiz submission logic to check authentication state from useInternetIdentity hook and call submitAnswers backend function when authenticated, while maintaining localStorage fallback for anonymous users"
+        },
+        {
+          "path": "frontend/src/pages/ResultsPage.tsx",
+          "operation": "modify",
+          "description": "Update results page to display authentication-aware messaging indicating whether results are saved to account or temporary in localStorage, with call-to-action to sign up for anonymous users"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Update useSubmitAnswers mutation hook to accept authentication state parameter and conditionally submit to backend when authenticated, including proper cache invalidation for user attempts"
+        }
+      ]
+    }
+  ]
+}

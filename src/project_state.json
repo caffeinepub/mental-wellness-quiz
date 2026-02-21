@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Mental health quiz app for young women",
+  "architectural_notes": [
+    "Quiz-based interface for mental health assessment",
+    "Authentication system using Internet Identity for secure passkey-based login",
+    "User profile storage to persist quiz results and history"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-mental-health-quiz-interface-with-multiple-choice-questions-focused-on-mental-wellness-topics-relevant-to-young-women",
+      "title": "Create a mental health quiz interface with multiple-choice questions focused on mental wellness topics relevant to young women",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-quiz-results-with-supportive-feedback-based-on-the-user-s-answers",
+      "title": "Display quiz results with supportive feedback based on the user's answers",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-warm-calming-and-supportive-visual-design-theme-that-resonates-with-young-women-seeking-mental-health-support-using-soft-color-palettes-and-approachable-typography-throughout-the-interface",
+      "title": "Apply a warm, calming, and supportive visual design theme that resonates with young women seeking mental health support, using soft color palettes and approachable typography throughout the interface",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-internet-identity-authentication-to-allow-users-to-sign-up-and-log-in-securely-using-passkey-based-authentication",
+      "title": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-user-profile-or-history-page-where-authenticated-users-can-view-their-past-quiz-results-and-track-their-mental-wellness-journey-over-time",
+      "title": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-quiz-submission-flow-to-use-the-authenticated-actor-when-users-are-logged-in-ensuring-their-results-are-saved-to-their-account",
+      "title": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create mental health quiz interface",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Store quiz questions and answer options in the backend with support for adding new questions",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Save user quiz responses in the backend to track progress over time",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add user sign-up and authentication feature with Internet Identity",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Enable users to save and track their quiz results over time",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Associate quiz responses with authenticated user principals in the backend to enable personalized result tracking",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add backend functions to retrieve a user's quiz history based on their Principal, including timestamps and scores",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Mental Wellness Quiz",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

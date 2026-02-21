@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Add user sign-up and authentication with Internet Identity",
+  "projectName": "Mental Wellness Quiz",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "text": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "yes i will like to add a sign up feature"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can click a sign-up/login button to authenticate with Internet Identity",
+        "Authentication state is persisted across browser sessions",
+        "The UI displays the user's authenticated status (logged in vs anonymous)",
+        "Users can log out from their account"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Associate quiz responses with authenticated user principals in the backend to enable personalized result tracking",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Quiz submission function accepts and stores the caller's Principal",
+        "Each quiz response is linked to the user who submitted it",
+        "Anonymous users can still take quizzes without authentication"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Authenticated users can navigate to a profile/history page",
+        "The page displays a list of previous quiz attempts with dates and scores",
+        "Users can see their progress trends over time",
+        "The page maintains the warm, supportive design theme"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add backend functions to retrieve a user's quiz history based on their Principal, including timestamps and scores",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend provides a query function to fetch all quiz attempts for a given Principal",
+        "Results include submission timestamps and calculated scores",
+        "Function returns an empty list for users with no history"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When authenticated, quiz submissions are sent through the authenticated actor",
+        "Results are stored with the user's Principal in the backend",
+        "Anonymous users continue to use localStorage for temporary results",
+        "The results page reflects whether results are saved to an account or are temporary"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Internet Identity for authentication (already integrated via useInternetIdentity hook)",
+    "Maintain the existing warm, calming visual design theme",
+    "Keep the single-actor backend architecture",
+    "Allow anonymous users to continue taking quizzes without requiring sign-up"
+  ],
+  "nonGoals": [
+    "Email-based authentication",
+    "Third-party OAuth providers (Google, Facebook, etc.)",
+    "Password-based authentication",
+    "Social sharing features",
+    "Real-time notifications"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

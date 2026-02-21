@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for home, quiz, results, and new profile page, wrapped with ThemeProvider and Toaster.",
+  "frontend/src/pages/HomePage.tsx": "Landing page component featuring welcoming hero section with wellness icon, three feature cards highlighting safe space/personalized/supportive aspects, and CTA button to start quiz.",
+  "frontend/src/pages/QuizPage.tsx": "Interactive quiz page with authentication-aware submission that saves results to backend when logged in or localStorage for anonymous users, maintaining progress tracking and navigation.",
+  "frontend/src/pages/ResultsPage.tsx": "Results display page showing wellness score with authentication-aware messaging, prompting anonymous users to log in to save results, and displaying saved status for authenticated users.",
+  "frontend/src/components/QuizQuestion.tsx": "Reusable question component that renders question text and radio button options with warm styling and visual feedback for selected answers.",
+  "frontend/src/components/FeedbackCard.tsx": "Animated feedback card component displaying supportive messages with check icon and staggered fade-in animation for results page.",
+  "frontend/src/components/Layout.tsx": "Application layout wrapper with header containing branding, authentication button, conditional profile navigation link for authenticated users, and footer with attribution.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for backend integration including authenticated quiz submission, fetching user's quiz attempts, and managing cache invalidation.",
+  "frontend/src/index.css": "Global styles with OKLCH-based warm color palette (peach, pink, lavender) for mental wellness theme, custom CSS variables, and typography settings for supportive aesthetic.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom wellness colors (warm-peach, soft-pink, gentle-lavender, calm-blue), increased border radius, and soft shadow utilities.",
+  "frontend/src/components/AuthButton.tsx": "Reusable authentication button component that displays login/logout options with loading states using useInternetIdentity hook.",
+  "frontend/src/pages/ProfilePage.tsx": "Profile page displaying user's quiz history with authentication guard, statistics cards showing total attempts and average score, and list of past attempts using AttemptCard component.",
+  "frontend/src/components/AttemptCard.tsx": "Card component displaying individual quiz attempt with formatted date/time, score percentage, feedback badge, and supportive message based on performance level."
+}
