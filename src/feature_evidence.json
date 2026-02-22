@@ -2,11 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-integrate-internet-identity-authentication-to-allow-users-to-sign-up-and-log-in-securely-using-passkey-based-authentication",
-      "featureTitle": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "featureId": "feature-debug-and-fix-the-issue-preventing-users-from-advancing-through-quiz-questions-when-attempting-to-submit-answers",
+      "featureTitle": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
       "files": [
-        "frontend/src/components/AuthButton.tsx",
-        "frontend/src/components/Layout.tsx"
+        "frontend/src/pages/QuizPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,19 +15,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-6"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-a-user-profile-or-history-page-where-authenticated-users-can-view-their-past-quiz-results-and-track-their-mental-wellness-journey-over-time",
-      "featureTitle": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
+      "featureId": "feature-verify-the-quiz-submission-logic-correctly-sends-data-to-the-backend-when-authenticated-and-to-localstorage-when-anonymous",
+      "featureTitle": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/AttemptCard.tsx",
-        "frontend/src/components/Layout.tsx",
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/pages/ProfilePage.tsx"
+        "frontend/src/pages/QuizPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -38,27 +33,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-quiz-submission-flow-to-use-the-authenticated-actor-when-users-are-logged-in-ensuring-their-results-are-saved-to-their-account",
-      "featureTitle": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
-      "files": [
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/pages/QuizPage.tsx",
-        "frontend/src/pages/ResultsPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
+        "REQ-2"
       ],
       "confidence": "high"
     }

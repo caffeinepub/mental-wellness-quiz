@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useGetAllQuestions, useSubmitAnswers } from '../hooks/useQueries';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
@@ -8,15 +8,48 @@ import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import type { Question } from '../backend';
+
+// Default questions to use when backend has no questions
+const DEFAULT_QUESTIONS: Question[] = [
+  {
+    questionText: 'ARE YOU OKAY WITH YOUR LIFE RIGHT NOW ?',
+    options: ['Yes, I feel content', 'Mostly okay', 'Not really', 'No, I\'m struggling'],
+    correctAnswerIndex: BigInt(0),
+  },
+  {
+    questionText: 'How would you describe your stress levels lately?',
+    options: ['Very low', 'Manageable', 'High', 'Overwhelming'],
+    correctAnswerIndex: BigInt(1),
+  },
+  {
+    questionText: 'Do you feel supported by the people around you?',
+    options: ['Yes, very supported', 'Somewhat supported', 'Not very supported', 'Not at all'],
+    correctAnswerIndex: BigInt(0),
+  },
+  {
+    questionText: 'How often do you engage in activities you enjoy?',
+    options: ['Daily', 'A few times a week', 'Rarely', 'Never'],
+    correctAnswerIndex: BigInt(0),
+  },
+  {
+    questionText: 'How would you rate your sleep quality?',
+    options: ['Excellent', 'Good', 'Poor', 'Very poor'],
+    correctAnswerIndex: BigInt(1),
+  },
+];
 
 export default function QuizPage() {
   const navigate = useNavigate();
-  const { data: questions, isLoading } = useGetAllQuestions();
+  const { data: backendQuestions, isLoading } = useGetAllQuestions();
   const submitAnswersMutation = useSubmitAnswers();
   const { loginStatus } = useInternetIdentity();
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+
+  // Use backend questions if available, otherwise use default questions
+  const questions = backendQuestions && backendQuestions.length > 0 ? backendQuestions : DEFAULT_QUESTIONS;
 
   const isAuthenticated = loginStatus === 'success';
   const currentQuestion = questions?.[currentQuestionIndex];
@@ -105,26 +138,6 @@ export default function QuizPage() {
     );
   }
 
-  if (!questions || questions.length === 0) {
-    return (
-      <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4">
-        <Card className="max-w-md w-full">
-          <CardHeader>
-            <CardTitle>No Questions Available</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground mb-4">
-              There are no quiz questions available at the moment. Please check back later.
-            </p>
-            <Button onClick={() => navigate({ to: '/' })}>
-              Return Home
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="max-w-3xl w-full space-y-6">
@@ -161,10 +174,13 @@ export default function QuizPage() {
 
           <Button
             onClick={handleNext}
-            disabled={answers[currentQuestionIndex] === undefined || submitAnswersMutation.isPending}
+            disabled={
+              answers[currentQuestionIndex] === undefined || 
+              (isLastQuestion && submitAnswersMutation.isPending)
+            }
             className="rounded-full"
           >
-            {submitAnswersMutation.isPending ? (
+            {isLastQuestion && submitAnswersMutation.isPending ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 Submitting...

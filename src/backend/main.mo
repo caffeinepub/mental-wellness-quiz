@@ -1,15 +1,12 @@
-import Text "mo:core/Text";
-import Time "mo:core/Time";
 import Map "mo:core/Map";
-import Array "mo:core/Array";
-import List "mo:core/List";
-import Iter "mo:core/Iter";
-import Principal "mo:core/Principal";
 import Nat "mo:core/Nat";
+import Iter "mo:core/Iter";
+import List "mo:core/List";
+import Text "mo:core/Text";
 import Runtime "mo:core/Runtime";
-import Migration "migration";
+import Time "mo:core/Time";
+import Principal "mo:core/Principal";
 
-(with migration = Migration.run)
 actor {
   type Question = {
     questionText : Text;
@@ -141,4 +138,3 @@ actor {
     score;
   };
 };
-

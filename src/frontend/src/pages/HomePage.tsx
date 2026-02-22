@@ -18,10 +18,10 @@ export default function HomePage() {
             />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-            Your Mental Wellness Journey
+            Positivity Quiz
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Take a moment for yourself. This supportive quiz helps you reflect on your mental wellness and provides personalized insights.
+            Take a moment for yourself. Starting with "ARE YOU OKAY WITH YOUR LIFE RIGHT NOW?" this supportive quiz helps you reflect on your mental wellness and positive mindset.
           </p>
         </div>
 

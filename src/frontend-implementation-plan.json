@@ -1,91 +1,49 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add user sign-up and authentication with Internet Identity",
+  "title": "Fix quiz question progression issue",
   "requirements": [
     {
-      "id": "REQ-6",
-      "summary": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "id": "REQ-1",
+      "summary": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
       "acceptanceCriteria": [
-        "Users can click a sign-up/login button to authenticate with Internet Identity",
-        "Authentication state is persisted across browser sessions",
-        "The UI displays the user's authenticated status (logged in vs anonymous)",
-        "Users can log out from their account"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Layout.tsx",
-          "operation": "modify",
-          "description": "Add authentication UI controls to the header displaying login/logout button based on authentication state from useInternetIdentity hook, showing user principal when authenticated"
-        },
-        {
-          "path": "frontend/src/components/AuthButton.tsx",
-          "operation": "create",
-          "description": "Create reusable authentication button component that conditionally renders login or logout button with loading states, using useInternetIdentity hook for authentication actions"
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
-      "acceptanceCriteria": [
-        "Authenticated users can navigate to a profile/history page",
-        "The page displays a list of previous quiz attempts with dates and scores",
-        "Users can see their progress trends over time",
-        "The page maintains the warm, supportive design theme"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/ProfilePage.tsx",
-          "operation": "create",
-          "description": "Create profile page component that fetches user's quiz history using getMyAttempts backend function, displays attempts with timestamps and scores in a supportive card layout with warm theme styling, shows empty state for users with no history"
-        },
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add useMyAttempts React Query hook that fetches authenticated user's quiz history by calling getMyAttempts backend function, with proper cache management and authentication state dependency"
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Register new /profile route in TanStack Router configuration that renders ProfilePage component with authentication guard to ensure only logged-in users can access"
-        },
-        {
-          "path": "frontend/src/components/Layout.tsx",
-          "operation": "modify",
-          "description": "Add navigation link to profile page in header that is only visible when user is authenticated, positioned alongside existing navigation elements"
-        },
-        {
-          "path": "frontend/src/components/AttemptCard.tsx",
-          "operation": "create",
-          "description": "Create reusable card component for displaying individual quiz attempt with formatted timestamp, score percentage, supportive feedback based on score level, maintaining warm wellness theme"
-        }
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "summary": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
-      "acceptanceCriteria": [
-        "When authenticated, quiz submissions are sent through the authenticated actor",
-        "Results are stored with the user's Principal in the backend",
-        "Anonymous users continue to use localStorage for temporary results",
-        "The results page reflects whether results are saved to an account or are temporary"
+        "Users can successfully select an answer and progress to the next question",
+        "The 'Next' or submit button responds to clicks without errors",
+        "Question progression works for both authenticated and anonymous users",
+        "All quiz questions can be completed and the results page is reached"
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/QuizPage.tsx",
           "operation": "modify",
-          "description": "Update quiz submission logic to check authentication state from useInternetIdentity hook and call submitAnswers backend function when authenticated, while maintaining localStorage fallback for anonymous users"
+          "description": "Fix the question progression logic by ensuring answer selection state is properly managed and the next question navigation is triggered correctly. Verify that the handleAnswer and handleNext functions correctly update currentQuestionIndex and selectedAnswer state, and that button click events are not being prevented. Ensure the questions array is properly loaded from the backend or fallback questions before rendering."
+        },
+        {
+          "path": "frontend/src/components/QuizQuestion.tsx",
+          "operation": "modify",
+          "description": "Verify that the QuizQuestion component correctly handles radio button selection events and properly calls the onAnswerSelect callback with the selected answer index. Ensure no event propagation issues or disabled states are blocking user interaction with the answer options."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
+      "acceptanceCriteria": [
+        "Authenticated users' quiz submissions successfully reach the backend",
+        "Anonymous users' results are correctly stored in localStorage",
+        "No console errors occur during the submission process",
+        "The results page displays the submitted answers correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/QuizPage.tsx",
+          "operation": "modify",
+          "description": "Review and fix the quiz submission logic in the handleSubmit function to ensure authenticated users' answers are properly sent to the backend via the submitAnswers mutation, and anonymous users' results are correctly stored in localStorage with the proper data structure. Add error handling and console logging to diagnose any submission failures. Verify that the navigation to the results page occurs after successful submission."
         },
         {
           "path": "frontend/src/pages/ResultsPage.tsx",
           "operation": "modify",
-          "description": "Update results page to display authentication-aware messaging indicating whether results are saved to account or temporary in localStorage, with call-to-action to sign up for anonymous users"
-        },
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Update useSubmitAnswers mutation hook to accept authentication state parameter and conditionally submit to backend when authenticated, including proper cache invalidation for user attempts"
+          "description": "Verify that the ResultsPage correctly retrieves quiz data from localStorage with the expected key and data structure. Ensure the score calculation logic handles the retrieved data properly and displays accurate results. Add fallback handling for cases where localStorage data is missing or malformed."
         }
       ]
     }

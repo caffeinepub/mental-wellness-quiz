@@ -1,0 +1,20 @@
+{
+  "id": "positivity-quiz",
+  "version": "1.0.0",
+  "name": "Positivity Quiz",
+  "description": "A supportive mental wellness quiz that starts with 'ARE YOU OKAY WITH YOUR LIFE RIGHT NOW?' and helps you reflect on your positive mindset. Get personalized insights about your wellbeing in a safe, encouraging space.",
+  "category": "wellness",
+  "tags": ["mental-health", "wellness", "self-assessment", "mindfulness", "positivity", "mental-wellness"],
+  "published": true,
+  "icon": "/assets/generated/wellness-icon.dim_256x256.png",
+  "screenshots": [],
+  "author": "Caffeine User",
+  "homepage": "/",
+  "features": [
+    "Custom wellness questions starting with life satisfaction check",
+    "Private and secure with Internet Identity authentication",
+    "Personalized feedback and insights",
+    "Track your wellness journey over time",
+    "Supportive and encouraging environment"
+  ]
+}

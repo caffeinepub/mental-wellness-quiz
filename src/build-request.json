@@ -1,103 +1,55 @@
 {
   "kind": "build_request",
-  "title": "Add user sign-up and authentication with Internet Identity",
-  "projectName": "Mental Wellness Quiz",
-  "priority": "normal",
+  "title": "Fix quiz question progression issue",
+  "projectName": "Positivity Quiz",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-6",
-      "text": "Integrate Internet Identity authentication to allow users to sign up and log in securely using passkey-based authentication",
+      "id": "REQ-1",
+      "text": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8"
+          "msg-final"
         ],
         "quotes": [
-          "yes i will like to add a sign up feature"
+          "not allowing question to go through"
         ]
       },
       "acceptanceCriteria": [
-        "Users can click a sign-up/login button to authenticate with Internet Identity",
-        "Authentication state is persisted across browser sessions",
-        "The UI displays the user's authenticated status (logged in vs anonymous)",
-        "Users can log out from their account"
+        "Users can successfully select an answer and progress to the next question",
+        "The 'Next' or submit button responds to clicks without errors",
+        "Question progression works for both authenticated and anonymous users",
+        "All quiz questions can be completed and the results page is reached"
       ]
     },
     {
-      "id": "REQ-7",
-      "text": "Associate quiz responses with authenticated user principals in the backend to enable personalized result tracking",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-8"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Quiz submission function accepts and stores the caller's Principal",
-        "Each quiz response is linked to the user who submitted it",
-        "Anonymous users can still take quizzes without authentication"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Create a user profile or history page where authenticated users can view their past quiz results and track their mental wellness journey over time",
+      "id": "REQ-2",
+      "text": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8"
+          "msg-final"
         ]
       },
       "acceptanceCriteria": [
-        "Authenticated users can navigate to a profile/history page",
-        "The page displays a list of previous quiz attempts with dates and scores",
-        "Users can see their progress trends over time",
-        "The page maintains the warm, supportive design theme"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Add backend functions to retrieve a user's quiz history based on their Principal, including timestamps and scores",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-8"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend provides a query function to fetch all quiz attempts for a given Principal",
-        "Results include submission timestamps and calculated scores",
-        "Function returns an empty list for users with no history"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "Update the quiz submission flow to use the authenticated actor when users are logged in, ensuring their results are saved to their account",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-8"
-        ]
-      },
-      "acceptanceCriteria": [
-        "When authenticated, quiz submissions are sent through the authenticated actor",
-        "Results are stored with the user's Principal in the backend",
-        "Anonymous users continue to use localStorage for temporary results",
-        "The results page reflects whether results are saved to an account or are temporary"
+        "Authenticated users' quiz submissions successfully reach the backend",
+        "Anonymous users' results are correctly stored in localStorage",
+        "No console errors occur during the submission process",
+        "The results page displays the submitted answers correctly"
       ]
     }
   ],
   "constraints": [
-    "Use Internet Identity for authentication (already integrated via useInternetIdentity hook)",
-    "Maintain the existing warm, calming visual design theme",
-    "Keep the single-actor backend architecture",
-    "Allow anonymous users to continue taking quizzes without requiring sign-up"
+    "Do not modify the backend actor logic or data structures",
+    "Maintain compatibility with existing Internet Identity authentication flow",
+    "Preserve the current quiz flow and user experience design"
   ],
   "nonGoals": [
-    "Email-based authentication",
-    "Third-party OAuth providers (Google, Facebook, etc.)",
-    "Password-based authentication",
-    "Social sharing features",
-    "Real-time notifications"
+    "Adding new quiz questions or modifying question content",
+    "Changing the scoring algorithm",
+    "Redesigning the quiz UI components",
+    "Modifying the app market metadata or publication settings"
   ],
   "imageRequirements": {
     "required": [],
