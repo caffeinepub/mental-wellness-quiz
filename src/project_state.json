@@ -1,31 +1,37 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Positivity quiz with bug fix needed",
+  "summary": "Tic-tac-toe game with Bible verses and user authentication",
   "architectural_notes": [],
-  "known_issues": [
-    "Questions not progressing/submitting in quiz"
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-debug-and-fix-the-issue-preventing-users-from-advancing-through-quiz-questions-when-attempting-to-submit-answers",
-      "title": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
+      "id": "feature-add-a-visible-sign-up-option-in-the-authentication-flow-that-allows-new-users-to-create-an-account-using-internet-identity",
+      "title": "Add a visible sign up option in the authentication flow that allows new users to create an account using Internet Identity",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-verify-the-quiz-submission-logic-correctly-sends-data-to-the-backend-when-authenticated-and-to-localstorage-when-anonymous",
-      "title": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
+      "id": "feature-update-the-authbutton-component-to-differentiate-between-sign-in-and-sign-up-actions-or-add-a-dedicated-sign-up-button-in-prominent-locations-like-the-homepage-and-resultspage",
+      "title": "Update the AuthButton component to differentiate between sign in and sign up actions, or add a dedicated sign up button in prominent locations like the HomePage and ResultsPage",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     }
   ],
-  "new_feature_requests": [],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add sign up option for user authentication",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "2d",
   "projectName": "Positivity Quiz",
   "clarification_mode": "instant",
   "clarification_rounds": 0

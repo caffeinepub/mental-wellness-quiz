@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-debug-and-fix-the-issue-preventing-users-from-advancing-through-quiz-questions-when-attempting-to-submit-answers",
-      "featureTitle": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
+      "featureId": "feature-add-a-visible-sign-up-option-in-the-authentication-flow-that-allows-new-users-to-create-an-account-using-internet-identity",
+      "featureTitle": "Add a visible sign up option in the authentication flow that allows new users to create an account using Internet Identity",
       "files": [
-        "frontend/src/pages/QuizPage.tsx"
+        "frontend/src/components/AuthButton.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,10 +20,12 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-verify-the-quiz-submission-logic-correctly-sends-data-to-the-backend-when-authenticated-and-to-localstorage-when-anonymous",
-      "featureTitle": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
+      "featureId": "feature-update-the-authbutton-component-to-differentiate-between-sign-in-and-sign-up-actions-or-add-a-dedicated-sign-up-button-in-prominent-locations-like-the-homepage-and-resultspage",
+      "featureTitle": "Update the AuthButton component to differentiate between sign in and sign up actions, or add a dedicated sign up button in prominent locations like the HomePage and ResultsPage",
       "files": [
-        "frontend/src/pages/QuizPage.tsx"
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ResultsPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",

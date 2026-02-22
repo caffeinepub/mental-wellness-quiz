@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import FeedbackCard from '../components/FeedbackCard';
-import { Heart, Home, Sparkles, Save, LogIn } from 'lucide-react';
+import AuthButton from '../components/AuthButton';
+import { Heart, Home, Sparkles, Save } from 'lucide-react';
 import type { Question } from '../backend';
 
 interface ResultsData {
@@ -18,7 +19,7 @@ interface ResultsData {
 
 export default function ResultsPage() {
   const navigate = useNavigate();
-  const { loginStatus, login, isLoggingIn } = useInternetIdentity();
+  const { loginStatus } = useInternetIdentity();
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
 
   const isAuthenticated = loginStatus === 'success';
@@ -135,25 +136,17 @@ export default function ResultsPage() {
           <Alert className="border-warm-peach/20 bg-card/95 backdrop-blur">
             <Save className="w-4 h-4 text-warm-peach" />
             <AlertDescription className="ml-2">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex flex-col gap-4">
                 <span className="text-sm">
-                  Your results are temporary. Log in to save your progress and track your wellness journey over time.
+                  Your results are temporary. Create an account to save your progress and track your wellness journey over time.
                 </span>
-                <Button 
-                  onClick={login} 
-                  disabled={isLoggingIn}
-                  size="sm"
-                  className="rounded-full shrink-0"
-                >
-                  {isLoggingIn ? (
-                    'Connecting...'
-                  ) : (
-                    <>
-                      <LogIn className="w-3 h-3 mr-2" />
-                      Log In
-                    </>
-                  )}
-                </Button>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <AuthButton variant="signup" size="default" />
+                  <span className="text-sm text-muted-foreground">
+                    Already have an account?{' '}
+                    <AuthButton variant="signin" size="sm" className="inline-flex" />
+                  </span>
+                </div>
               </div>
             </AlertDescription>
           </Alert>

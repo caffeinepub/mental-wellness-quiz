@@ -2,9 +2,13 @@ import { useNavigate } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Heart, Sparkles, Shield } from 'lucide-react';
+import AuthButton from '../components/AuthButton';
+import { useInternetIdentity } from '../hooks/useInternetIdentity';
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { loginStatus } = useInternetIdentity();
+  const isAuthenticated = loginStatus === 'success';
 
   return (
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
@@ -72,6 +76,29 @@ export default function HomePage() {
             Start Your Wellness Check-In
           </Button>
         </div>
+
+        {!isAuthenticated && (
+          <Card className="border-warm-peach/20 bg-card/50 backdrop-blur mt-12">
+            <CardContent className="pt-6">
+              <div className="text-center space-y-4">
+                <h3 className="text-xl font-semibold text-foreground">
+                  Track Your Wellness Journey
+                </h3>
+                <p className="text-muted-foreground max-w-xl mx-auto">
+                  Create an account to save your results, track your progress over time, and see how your wellness evolves. 
+                  Your journey matters, and we're here to support you every step of the way.
+                </p>
+                <div className="flex items-center justify-center gap-3 pt-2">
+                  <AuthButton variant="signup" size="lg" />
+                  <div className="text-sm text-muted-foreground">
+                    Already have an account?{' '}
+                    <AuthButton variant="signin" size="sm" className="inline-flex" />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );

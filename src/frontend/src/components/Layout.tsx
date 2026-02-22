@@ -53,7 +53,14 @@ export default function Layout({ children }: LayoutProps) {
                 </Button>
               )}
 
-              <AuthButton />
+              {!isAuthenticated ? (
+                <>
+                  <AuthButton variant="signup" className="hidden sm:inline-flex" />
+                  <AuthButton variant="signin" />
+                </>
+              ) : (
+                <AuthButton />
+              )}
             </div>
           </div>
         </div>

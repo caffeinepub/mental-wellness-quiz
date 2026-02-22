@@ -1,55 +1,56 @@
 {
   "kind": "build_request",
-  "title": "Fix quiz question progression issue",
+  "title": "Add sign up option for user authentication",
   "projectName": "Positivity Quiz",
-  "priority": "high",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Debug and fix the issue preventing users from advancing through quiz questions when attempting to submit answers",
+      "text": "Add a visible sign up option in the authentication flow that allows new users to create an account using Internet Identity",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-final"
+          "msg-6"
         ],
         "quotes": [
-          "not allowing question to go through"
+          "and see sign up option"
         ]
       },
       "acceptanceCriteria": [
-        "Users can successfully select an answer and progress to the next question",
-        "The 'Next' or submit button responds to clicks without errors",
-        "Question progression works for both authenticated and anonymous users",
-        "All quiz questions can be completed and the results page is reached"
+        "A sign up button or link is visible to unauthenticated users",
+        "The sign up option clearly indicates it creates a new account",
+        "Clicking sign up initiates the Internet Identity authentication flow",
+        "After successful sign up, the user is authenticated and can access protected features"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Verify the quiz submission logic correctly sends data to the backend when authenticated and to localStorage when anonymous",
+      "text": "Update the AuthButton component to differentiate between sign in and sign up actions, or add a dedicated sign up button in prominent locations like the HomePage and ResultsPage",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-final"
+          "msg-6"
+        ],
+        "quotes": [
+          "and see sign up option"
         ]
       },
       "acceptanceCriteria": [
-        "Authenticated users' quiz submissions successfully reach the backend",
-        "Anonymous users' results are correctly stored in localStorage",
-        "No console errors occur during the submission process",
-        "The results page displays the submitted answers correctly"
+        "Sign up option is clearly distinguishable from sign in",
+        "Sign up is accessible from key pages where authentication is relevant",
+        "The UI clearly communicates the difference between signing in (existing user) and signing up (new user)"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the backend actor logic or data structures",
-    "Maintain compatibility with existing Internet Identity authentication flow",
-    "Preserve the current quiz flow and user experience design"
+    "Must use Internet Identity for authentication",
+    "Do not modify backend/main.mo",
+    "Do not edit immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
   ],
   "nonGoals": [
-    "Adding new quiz questions or modifying question content",
-    "Changing the scoring algorithm",
-    "Redesigning the quiz UI components",
-    "Modifying the app market metadata or publication settings"
+    "Implementing traditional email/password registration",
+    "Adding third-party authentication providers",
+    "Modifying the backend authentication logic"
   ],
   "imageRequirements": {
     "required": [],
